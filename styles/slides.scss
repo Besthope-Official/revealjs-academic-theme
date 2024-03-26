@@ -1,0 +1,175 @@
+/**
+ * Reveal.js theme inspired by Latex Beamer
+ * Based on white.scss
+ * 
+ */
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+// .reveal h1 {
+//     position: relative;
+//     padding-left: 8%;
+//     padding: 10px 10px;
+//     text-align: left;
+//     background-color: blue;
+//     color: white;
+//     z-index: 9999;
+// }
+
+// Overwrite theme settings
+// colors:
+$backgroundColor: #fff;
+
+$mainColor: #222;
+$headingColor: #222;
+
+// fonts:
+$mainFontSize: 26px;
+
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+$codeFont: 'consolas';
+
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 600;
+$linkColor: #2a76dd;
+$linkColorHover: lighten($linkColor, 15%);
+$selectionBackgroundColor: lighten($linkColor, 25%);
+
+$heading1Size: 1.8em;
+$heading2Size: 1.4em;
+$heading3Size: 1.2em;
+$heading4Size: 0.9em;
+
+$overlayElementBgColor: 0, 0, 0;
+$overlayElementFgColor: 240, 240, 240;
+
+
+// Change text colors against dark slide backgrounds
+@include dark-bg-text-color(#fff);
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+/*
+/* Overwrite theme styles
+ * text-align set to left
+ */
+
+.reveal .slides {
+    text-align: left;
+}
+
+.reveal .title {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 12px;
+    padding-left: 13%;
+    padding-right: 13%;
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+.reveal .title h1 {
+    margin: 0;
+}
+
+.reveal h1 {
+    position: relative;
+    padding-bottom: 2%;
+    padding-top: 2%;
+    padding-left: 5%;
+    text-align: left;
+    background-color: #1f38c5;
+    color: white;
+    z-index: 9999;
+}
+
+.reveal h2 {
+    position: relative;
+    text-align: left;
+    padding-left: 5%;
+    padding-bottom: 2%;
+}
+
+.reveal h3 {
+    position: relative;
+    text-align: left;
+    padding-left: 5%;
+    padding-bottom: 2%;
+}
+
+.reveal h4 {
+    position: relative;
+    text-align: left;
+    padding-left: 5%;
+    padding-bottom: 2%;
+}
+
+.reveal p {
+    text-align: left;
+    padding-left: 5%;
+}
+
+li {
+    display: list-item;
+    text-align: left;
+}
+
+.reveal ul {
+    text-align: left;
+    padding-left: 5%;
+}
+
+.reveal ol {
+    text-align: left;
+    padding-left: 5%;
+}
+
+.reveal footer {
+    font-size: 16px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 6px 0;
+    box-sizing: border-box;
+    z-index: 9999;
+}
+
+.reveal pre {
+    border-radius: 8px;
+    display: block;
+    position: relative;
+    width: 90%;
+    margin: var(--r-block-margin) auto;
+    text-align: left;
+    font-size: 0.55em;
+    font-family: var(--r-code-font);
+    line-height: 1.2em;
+    word-wrap: break-word;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.reveal pre code {
+    border-radius: 8px;
+    display: block;
+    padding: 18px;
+    overflow: auto;
+    max-height: 400px;
+    word-wrap: normal;
+}
