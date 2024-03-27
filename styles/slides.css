@@ -19,7 +19,7 @@ section.has-dark-background h6 {
 :root {
   --r-background-color: #fff;
   --r-main-font: Source Sans Pro, Helvetica, sans-serif;
-  --r-main-font-size: 26px;
+  --r-main-font-size: 24px;
   --r-main-color: #222;
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 20px 0;
@@ -379,7 +379,7 @@ section.has-dark-background h6 {
   padding: 12px;
   padding-left: 13%;
   padding-right: 13%;
-  background-color: blue;
+  background-color: #1f38c5;
   color: white;
   border-radius: 10px;
   white-space: nowrap;
@@ -404,21 +404,18 @@ section.has-dark-background h6 {
   position: relative;
   text-align: left;
   padding-left: 5%;
-  padding-bottom: 2%;
 }
 
 .reveal h3 {
   position: relative;
   text-align: left;
   padding-left: 5%;
-  padding-bottom: 2%;
 }
 
 .reveal h4 {
   position: relative;
   text-align: left;
   padding-left: 5%;
-  padding-bottom: 2%;
 }
 
 .reveal p {
@@ -426,12 +423,12 @@ section.has-dark-background h6 {
   padding-left: 5%;
 }
 
-li {
-  display: list-item;
-  text-align: left;
+ul li {
+  margin-top: 8px;
 }
 
 .reveal ul {
+  display: inline-block;
   text-align: left;
   padding-left: 5%;
 }

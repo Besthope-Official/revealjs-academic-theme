@@ -27,7 +27,7 @@ $mainColor: #222;
 $headingColor: #222;
 
 // fonts:
-$mainFontSize: 26px;
+$mainFontSize: 24px;
 
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
 $headingFont: 'Source Sans Pro', Helvetica, sans-serif;
@@ -75,7 +75,7 @@ $overlayElementFgColor: 240, 240, 240;
     padding: 12px;
     padding-left: 13%;
     padding-right: 13%;
-    background-color: blue;
+    background-color: #1f38c5;
     color: white;
     border-radius: 10px;
     white-space: nowrap;
@@ -100,21 +100,18 @@ $overlayElementFgColor: 240, 240, 240;
     position: relative;
     text-align: left;
     padding-left: 5%;
-    padding-bottom: 2%;
 }
 
 .reveal h3 {
     position: relative;
     text-align: left;
     padding-left: 5%;
-    padding-bottom: 2%;
 }
 
 .reveal h4 {
     position: relative;
     text-align: left;
     padding-left: 5%;
-    padding-bottom: 2%;
 }
 
 .reveal p {
@@ -122,12 +119,12 @@ $overlayElementFgColor: 240, 240, 240;
     padding-left: 5%;
 }
 
-li {
-    display: list-item;
-    text-align: left;
+ul li {
+    margin-top: 8px;
 }
 
 .reveal ul {
+    display: inline-block;
     text-align: left;
     padding-left: 5%;
 }
