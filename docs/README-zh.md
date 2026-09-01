@@ -6,7 +6,7 @@
 
 特性:
 
-- **学术主题**: LaTeX Beamer 风格标题块、自动页脚、KaTeX 公式、图片自适应尺寸、night-owl 代码高亮
+- **学术主题**: LaTeX Beamer 风格标题块、自动页脚、KaTeX 公式（解析增强）、图片自适应 resize、night-owl 代码高亮
 - **简化配置**: 约定了一套内容生产与组织方式、快速产出 dist 部署
 
 ## 快速开始

@@ -39,6 +39,7 @@
 
     <script src="{{base}}vendor/reveal.js"></script>
     <script src="{{base}}theme/fit-images.js"></script>
+    <script src="{{base}}theme/marked-math.js"></script>
     <script src="{{base}}vendor/plugin/notes.js"></script>
     <script src="{{base}}vendor/plugin/markdown.js"></script>
     <script src="{{base}}vendor/plugin/highlight.js"></script>
@@ -56,6 +57,11 @@
             pdfMaxPagesPerSlide: 1,
             // view: 'scroll',
             center: false,
+            // Shield $/$$ math from the markdown lexer so multi-line
+            // formulas (aligned, \\ line breaks, blank lines) survive.
+            markdown: {
+                extensions: window.RevealMarkedMath
+            },
             copycode: {
                 button: 'hover',
                 text: { copy: '复制', copied: '已复制' },

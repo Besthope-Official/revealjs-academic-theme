@@ -377,6 +377,11 @@ section.has-dark-background h6 {
   text-align: left;
 }
 
+.reveal strong,
+.reveal b {
+  color: #b0463f;
+}
+
 .reveal .title {
   position: fixed;
   top: 50%;
@@ -543,14 +548,44 @@ ul li {
 }
 
 .reveal ul {
-  display: inline-block;
+  display: block;
   text-align: left;
   padding-left: 5%;
 }
 
+.reveal ul ul {
+  margin-left: 6pt;
+  color: #1f3864;
+}
+
+.reveal ul ul li::marker {
+  content: "✦ ";
+  font-size: 0.8em;
+}
+
 .reveal ol {
+  display: block;
   text-align: left;
   padding-left: 5%;
+}
+
+/* reference block: light-gray panel with slightly gray text, instead of
+   reveal's near-invisible rgba(255,255,255,0.05) on white */
+.reveal blockquote {
+  background-color: #f5f5f5;
+  color: #555;
+}
+
+.reveal blockquote::before {
+  content: "“";
+  position: absolute;
+  top: -0.4em;
+  left: -0.35em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2.5em;
+  font-style: normal;
+  line-height: 1;
+  color: #1f38c5;
 }
 
 .reveal .footer-container {
