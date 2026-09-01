@@ -391,18 +391,52 @@ section.has-dark-background h6 {
   white-space: nowrap;
 }
 
-.reveal .logo {
+/* School logo painted as part of the heading, so it renders with the
+   slide transition instead of floating above it as a fixed overlay.
+   Content pages: horizontal wordmark at the right end of the blue h1
+   bar. Cover: emblem centered above the title box. Missing assets
+   simply paint nothing. */
+.reveal h1:not(.title)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 3%;
+  transform: translateY(-50%);
+  width: 150px;
+  height: 70%;
+  background: url("../assets/h1_logo.png") right center/contain no-repeat;
+}
+
+.reveal .title::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 24px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  background: url("../assets/main_logo.png") center/contain no-repeat;
+}
+
+.reveal .cover-meta {
   position: fixed;
-  bottom: 20px;
-  right: 10px;
-  width: 15%;
-  height: auto;
-  z-index: 10;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* neutralize .reveal p { padding-left: 5% } */
+  padding: 0;
+  font-size: 24px;
+  color: #333;
+  white-space: nowrap;
+}
+
+.reveal .cover-meta:empty {
+  display: none;
 }
 
 .reveal .timestamp {
   position: fixed;
-  top: 58%;
+  top: 64%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 5px;
@@ -530,8 +564,9 @@ ul li {
   width: 100%;
   position: absolute;
   bottom: 0;
-  /* slide sections paint at z-index 10; keep the footer above any
-     slide content (e.g. capped images on multi-image pages) */
+  /* slide sections paint at z-index 10, the .present one at 11; keep
+     the footer above any slide content (e.g. capped images on
+     multi-image pages) */
   z-index: 20;
 }
 
@@ -560,7 +595,10 @@ ul li {
   font-size: 16px;
   font-weight: bold;
   color: white;
-  background-color: #1f38c5;
+  /* dimmed variant of the h1 accent (#1f38c5): the footer is small
+     chrome, not a headline, so keep it from glowing next to the
+     black title cell and dark-navy author cell */
+  background-color: #2b3f91;
   align-self: stretch;
 }
 

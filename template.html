@@ -20,17 +20,13 @@
             <section>
                 <section>
                     <h1 class="title">{{title}}</h1>
+                    <p class="cover-meta">{{coverMeta}}</p>
                     <p class="timestamp">{{date}}</p>
                 </section>
             </section>
             <section data-markdown="{{md}}" data-separator="^<!-- slide -->"
                 data-separator-vertical="^<!-- vslide -->">
             </section>
-            <!-- global containers: drop assets/logo.png into the repo to show it -->
-            <div class="logo">
-                <img src="{{base}}assets/logo.png" alt="Logo"
-                    onerror="this.parentNode.style.display='none'">
-            </div>
             <footer class="footer-container">
                 <footer class="footer-title">
                     <script type="text/javascript">

@@ -21,6 +21,12 @@ const escapeHtml = (s) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;')
    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
+/** '2026-09-01' -> '2026 年 9 月 1 日'; other strings pass through. */
+const formatDate = (s) => {
+  const m = /^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(String(s).trim());
+  return m ? `${m[1]} 年 ${+m[2]} 月 ${+m[3]} 日` : s;
+};
+
 /** Parse leading `--- key: value ---` front-matter; return {meta, body}. */
 function splitFrontMatter(raw) {
   const lines = raw.split('\n');
@@ -96,11 +102,13 @@ export function build() {
     fs.mkdirSync(dest, { recursive: true });
 
     const { meta, body } = splitFrontMatter(fs.readFileSync(full, 'utf8'));
+    const coverMeta = [meta.institute, meta.author].filter(Boolean).join(' · ');
     const html = template
       .replaceAll('{{base}}', '../'.repeat(depth))
       .replaceAll('{{title}}', escapeHtml(meta.title || 'untitled'))
       .replaceAll('{{author}}', escapeHtml(meta.author || ''))
-      .replaceAll('{{date}}', meta.date || today)
+      .replaceAll('{{coverMeta}}', escapeHtml(coverMeta))
+      .replaceAll('{{date}}', escapeHtml(formatDate(meta.date || today)))
       .replaceAll('{{md}}', 'index.md');
 
     fs.writeFileSync(path.join(dest, 'index.html'), html);

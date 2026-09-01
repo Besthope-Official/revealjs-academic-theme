@@ -1,5 +1,6 @@
 ---
 title: theme demo
+institute: 羽丘女子学园
 author: Besthope
 ---
 
