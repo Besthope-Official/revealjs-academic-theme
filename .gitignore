@@ -105,3 +105,8 @@ venv.bak/
 
 # output
 output/
+# Node
+node_modules/
+
+# Build output
+dist/

@@ -1,0 +1,451 @@
+/**
+ * Academic theme for reveal.js 6.x (LaTeX Beamer inspired)
+ *
+ * Build:  npm run build:theme
+ *         (compiles against the theme templates shipped inside the
+ *          reveal.js npm package — no fork of reveal.js needed)
+ *
+ * For people who only want the compiled CSS: grab theme/slides.css
+ * and drop it into dist/theme/ of an existing reveal.js project.
+ */
+
+@use 'reveal.js/css/theme/template/settings' with (
+  $background-color: #fff,
+
+  $main-color: #222,
+  $main-font: "'Source Sans Pro', Helvetica, sans-serif",
+  $main-font-size: 24px,
+
+  $heading-color: #222,
+  $heading-font: "'Source Sans Pro', Helvetica, sans-serif",
+  $heading-font-weight: 600,
+  $heading-letter-spacing: normal,
+  $heading-text-transform: uppercase,
+  $heading-text-shadow: none,
+
+  $heading1-size: 1.8em,
+  $heading2-size: 1.4em,
+  $heading3-size: 1.2em,
+  $heading4-size: 0.9em,
+
+  $code-font: consolas,
+
+  $link-color: #2a76dd,
+
+  $overlay-element-bg-color: (0, 0, 0),
+  $overlay-element-fg-color: (240, 240, 240)
+);
+@use 'reveal.js/css/theme/template/mixins' as mixins;
+@use 'reveal.js/css/theme/template/theme';
+
+@include mixins.dark-bg-text-color(#fff);
+
+/*
+ * Overwrite theme styles
+ * text-align set to left
+ */
+
+.reveal .slides {
+    text-align: left;
+}
+
+.reveal strong,
+.reveal b {
+    color: #b0463f;
+}
+
+.reveal .title {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 12px;
+    padding-left: 13%;
+    padding-right: 13%;
+    background-color: #1f38c5;
+    color: white;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+/* School logo painted as part of the heading, so it renders with the
+   slide transition instead of floating above it as a fixed overlay.
+   Content pages: horizontal wordmark at the right end of the blue h1
+   bar. Cover: emblem centered above the title box. Missing assets
+   simply paint nothing. */
+.reveal h1:not(.title)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 3%;
+    transform: translateY(-50%);
+    width: 150px;
+    height: 70%;
+    background: url("../assets/h1_logo.png") right center / contain no-repeat;
+}
+
+.reveal .title::before {
+    content: "";
+    position: absolute;
+    bottom: calc(100% + 24px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    background: url("../assets/main_logo.png") center / contain no-repeat;
+}
+
+.reveal .cover-meta {
+    position: fixed;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* neutralize .reveal p { padding-left: 5% } */
+    padding: 0;
+    font-size: 24px;
+    color: #333;
+    white-space: nowrap;
+}
+
+.reveal .cover-meta:empty {
+    display: none;
+}
+
+.reveal .timestamp {
+    position: fixed;
+    top: 64%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.reveal .title h1 {
+    margin: 0;
+}
+
+.reveal h1 {
+    position: relative;
+    padding-bottom: 2%;
+    padding-top: 2%;
+    padding-left: 5%;
+    text-align: left;
+    text-transform: none;
+    background-color: #1f38c5;
+    color: white;
+    z-index: 9999;
+}
+
+.reveal h2 {
+    position: relative;
+    text-align: left;
+    padding-left: 5%;
+}
+
+.reveal h3 {
+    position: relative;
+    text-align: left;
+    padding-left: 5%;
+}
+
+.reveal h4 {
+    position: relative;
+    text-align: left;
+    padding-left: 5%;
+}
+
+.reveal p {
+    text-align: left;
+    padding-left: 5%;
+}
+
+ul li {
+    margin-top: 8px;
+}
+
+/*
+ * Size cap for images that are NOT auto-stretched (multi-image pages,
+ * inline images, `nostretch`, fragments, linked images).
+ * The deck is a fixed 960x720 canvas scaled via transform, so px caps
+ * are stable regardless of the actual viewport.
+ */
+.reveal section img:not(.r-stretch) {
+    max-height: 576px; /* 80% of the 720px slide height */
+}
+
+/*
+ * Center images by default. Block + auto margins centers every
+ * standalone image; text-mixed inline images are restored to inline
+ * flow, and paragraphs holding only an image drop the asymmetric
+ * left padding so the image centers on the slide, not in the box.
+ */
+.reveal section img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*
+ * Tagged `image-only` by fit-images.js, not `:has(> img:only-child)`:
+ * only-child counts elements, so a paragraph mixing an image with
+ * surrounding text would also match and lose its left padding.
+ */
+.reveal section p.image-only {
+    padding-left: 0;
+}
+
+.reveal section p > img:not(:only-child) {
+    display: inline;
+    /* vertical margins must go too: an inline replaced element's baseline
+       is its bottom margin edge, so leftover margins lift the image off
+       the text baseline */
+    margin: 0;
+    vertical-align: middle;
+}
+
+/*
+ * Explicit `height` = inline mode. Markdown is brittle here: blank lines
+ * around an <img> split it into a paragraph of its own (only-child),
+ * which would go block+centered as a standalone image. Authors sizing an
+ * image with height want it in the text flow — same contract fit-images
+ * already uses to skip stretching/capping.
+ */
+.reveal section p > img[height] {
+    display: inline;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.reveal ul {
+    display: block;
+    text-align: left;
+    padding-left: 5%;
+}
+
+.reveal ul ul {
+    margin-left: 6pt;
+    color: #1f3864;
+}
+
+.reveal ul ul li::marker {
+    content: '\2726\2002';
+    font-size: 0.8em;
+}
+
+.reveal ol {
+    display: block;
+    text-align: left;
+    padding-left: 5%;
+}
+
+/* reference block: light-gray panel with slightly gray text, instead of
+   reveal's near-invisible rgba(255,255,255,0.05) on white */
+.reveal blockquote {
+    background-color: #f5f5f5;
+    color: #555;
+}
+
+.reveal blockquote::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.4em;
+    left: -0.35em;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.5em;
+    font-style: normal;
+    line-height: 1;
+    color: #1f38c5;
+}
+
+.reveal .footer-container {
+    display: grid;
+    /* title | slide number | author */
+    grid-template-columns: 1fr auto 1fr;
+    padding: 6px 0;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    /* slide sections paint at z-index 10, the .present one at 11; keep
+       the footer above any slide content (e.g. capped images on
+       multi-image pages) */
+    z-index: 20;
+}
+
+.footer-author {
+    padding: 10px;
+    background-color: #191959;
+}
+
+.footer-title {
+    padding: 10px;
+    background-color: black;
+}
+
+/* middle footer cell: slide number, rendered by reveal.js and moved
+   into the footer on 'ready' (see template.html). Reset reveal.css
+   defaults (position: absolute; bottom/right: 8px) so it participates
+   in the footer grid as a normal cell. */
+.reveal .slide-number {
+    position: static;
+    bottom: auto;
+    right: auto;
+    z-index: auto;
+    display: block;
+    padding: 10px;
+    font: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    /* dimmed variant of the h1 accent (#1f38c5): the footer is small
+       chrome, not a headline, so keep it from glowing next to the
+       black title cell and dark-navy author cell */
+    background-color: #2b3f91;
+    align-self: stretch;
+}
+
+.reveal pre {
+    border-radius: 8px;
+    display: block;
+    position: relative;
+    width: 90%;
+    margin: var(--r-block-margin) auto;
+    text-align: left;
+    font-size: 0.65em;
+    font-family: var(--r-code-font);
+    line-height: 1.4em;
+    word-wrap: break-word;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.reveal pre code {
+    border-radius: 8px;
+    display: block;
+    padding: 18px;
+    overflow: auto;
+    max-height: 400px;
+    word-wrap: normal;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th {
+    background-color: #1f38c5;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+    border-right: 1px solid #ccc;
+}
+
+td:last-child,
+th:last-child {
+    border-right: none;
+}
+
+tr {
+    border-bottom: 1px solid #ccc;
+}
+
+td {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    vertical-align: top;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+th.sort {
+    cursor: pointer;
+    background-color: #f1f1f1;
+}
+
+th.sort:hover {
+    background-color: #e9e9e9;
+}
+
+th.sort::after {
+    content: '';
+    float: right;
+    margin-top: 3px;
+    border-width: 0 4px 4px;
+    border-style: solid;
+    border-color: transparent transparent #000 transparent;
+}
+
+th.sort.asc::after {
+    border-bottom: none;
+    border-left: 4px solid #000;
+}
+
+th.sort.desc::after {
+    border-top: none;
+    border-right: 4px solid #000;
+}
+
+/* opt the highlight plugin's line-number table out of markdown table styling */
+.reveal pre table {
+    width: auto;
+    margin: 0;
+    background: none;
+    box-shadow: none;
+}
+
+.reveal pre tr,
+.reveal pre td {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: default;
+}
+
+/* highlighted lines: subtle bg on top of night-owl, beyond reveal's dimming */
+.reveal pre .hljs tr.highlight-line {
+    background: rgba(130, 170, 255, 0.14);
+}
+
+/* copycode: wrapper width matches pre so the button hugs the code block */
+.reveal .codeblock {
+    width: 90%;
+    margin: var(--r-block-margin) auto;
+}
+
+.reveal .codeblock pre {
+    width: 100%;
+    margin: 0;
+}
+
+/* copycode button: night-owl palette, hover-in chip
+ * vars live on .reveal — inheritance beats copycode.css's :root defaults
+ * even though the plugin appends its stylesheet at runtime, after slides.css */
+.reveal {
+    --cc-copy-bg: rgba(127, 219, 202, 0.08);
+    --cc-copy-color: #7fdbca;
+    --cc-copyborder: 1px solid rgba(127, 219, 202, 0.35);
+    --cc-copied-bg: rgba(33, 199, 168, 0.12);
+    --cc-copied-color: #21c7a8;
+    --cc-copiedborder: 1px solid rgba(33, 199, 168, 0.45);
+    --cc-scale: 0.85;
+    --cc-radius: 0.3;
+    --cc-offset: 0.15;
+}
+
+/* comfier click target than the default .2em/.5em chip */
+.reveal .codeblock button[data-cc] {
+    padding: 0.3em 0.8em;
+}

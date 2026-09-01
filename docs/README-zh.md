@@ -2,51 +2,33 @@
 
 ## 介绍
 
-reveal.js 的一个幻灯片主题与模板
+开箱即用的 reveal.js 学术主题
 
 特性:
 
-- **自定义幻灯片主题**: 更适合学术汇报/上课用PPT/学习笔记
-- **可插入页面**: 导出页面经部署可作为 iframe 插入例如 blog
-- 高度**个性化**: 按需编辑模板以及主题样式
-- 集成了**自动化工具**: 自动导出相关格式文件
+- **学术主题**: LaTeX Beamer 风格标题块、自动页脚、KaTeX 公式（解析增强）、图片自适应 resize、night-owl 代码高亮
+- **简化配置**: 约定了一套内容生产与组织方式、快速产出 dist 部署
 
-## 使用方法
-
-1. 完整安装 reveal.js (需要 Node.js 10.0.0+环境)
+## 快速开始
 
 ```bash
-git clone https://github.com/hakimel/reveal.js.git
-cd reveal.js && npm install
+pnpm install       # install revealjs
+pnpm dev           # go to http://localhost:4173/example to see a live demo
 ```
 
-2. 将 `styles` 目录下的 `slides.css` 拖放到 `dist/theme` 目录下
+## 主题配置
 
-3. 编写 markdown 文档头
+在 assets 下放你希望展示的 logo，例如学校校徽，区分扁平样式和正常样式，推荐透明背景.
 
-```yml
----
-title: 这里编写你的标题
----
+## Frontmatter 配置
+
+每一个 md 页都可以单独配置 frontmatter 来控制页面的主标题和机构、作者
+
+```yaml
+title: theme demo
+institute: 羽丘女子学园
+author: Besthope
 ```
-
-4. 运行命令
-
-```bash
-./md2slides.py <your_markdown_file>.md
-```
-
-5. 在 `output` 目录下就会显示生成的 html 文件和 md 文件
-
-6. 将对应得到的文件放到 `reveal.js` 目录下, 运行命令
-
-```bash
-npm start
-```
-
-就可以看到你的幻灯片了.
-
-如果你愿意, 你可以将导出文件的目录直接指定为 reveal.js, 这样就可以省去复制粘贴的工作了
 
 ## 演示
 
@@ -61,16 +43,3 @@ PPT 标题 & 自动生成脚注
 正文效果
 
 ![正文效果](./images/image-2.png)
-
-TBD
-
-## 配置
-
-你可以在 template 中修改 markdown 分隔符的格式, 默认如下
-
-```html
-<section data-markdown="*.md"
-       data-separator="^<!-- slide -->"
-       data-separator-vertical="^<!-- vslide -->">
-</section>
-```

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, user-scalable=no">
+    <title>{{title}}</title>
+
+    <link rel="stylesheet" href="{{base}}vendor/reset.css">
+    <link rel="stylesheet" href="{{base}}vendor/reveal.css">
+    <link rel="stylesheet" href="{{base}}theme/slides.css">
+
+    <!-- Code highlight theme -->
+    <link rel="stylesheet" href="{{base}}theme/night-owl.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <section>
+                    <h1 class="title">{{title}}</h1>
+                    <p class="cover-meta">{{coverMeta}}</p>
+                    <p class="timestamp">{{date}}</p>
+                </section>
+            </section>
+            <section data-markdown="{{md}}" data-separator="^<!-- slide -->"
+                data-separator-vertical="^<!-- vslide -->">
+            </section>
+            <footer class="footer-container">
+                <footer class="footer-title">
+                    <script type="text/javascript">
+                        document.write(document.title)</script>
+                </footer>
+                <footer class="footer-author">{{author}}</footer>
+            </footer>
+        </div>
+    </div>
+
+    <script src="{{base}}vendor/reveal.js"></script>
+    <script src="{{base}}theme/fit-images.js"></script>
+    <script src="{{base}}theme/marked-math.js"></script>
+    <script src="{{base}}vendor/plugin/notes.js"></script>
+    <script src="{{base}}vendor/plugin/markdown.js"></script>
+    <script src="{{base}}vendor/plugin/highlight.js"></script>
+    <script src="{{base}}vendor/plugin/copycode/copycode.js"></script>
+    <script src="{{base}}vendor/plugin/math.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            width: 960,
+            height: 720,
+            hash: true,
+            slideNumber: 'c/t',
+            pdfMaxPagesPerSlide: 1,
+            // view: 'scroll',
+            center: false,
+            // Shield $/$$ math from the markdown lexer so multi-line
+            // formulas (aligned, \\ line breaks, blank lines) survive.
+            markdown: {
+                extensions: window.RevealMarkedMath
+            },
+            copycode: {
+                button: 'hover',
+                text: { copy: '复制', copied: '已复制' },
+                timeout: 1500,
+            },
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealFitImages, RevealHighlight, RevealNotes, RevealMath.KaTeX, CopyCode]
+        });
+
+        // Move the reveal-generated .slide-number into the footer so it
+        // becomes the middle cell (title | page number | author) and scales
+        // with the slides.
+        Reveal.on('ready', () => {
+            const num = document.querySelector('.reveal .slide-number');
+            const footer = document.querySelector('.footer-container');
+            if (num && footer) {
+                const author = footer.querySelector('.footer-author');
+                footer.insertBefore(num, author);
+            }
+        });
+    </script>
+</body>
+
+</html>
