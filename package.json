@@ -1,0 +1,22 @@
+{
+  "name": "revealjs-academic-theme",
+  "version": "0.2.0",
+  "description": "Academic theme & multi-deck workflow for reveal.js 6.x",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/dev.mjs",
+    "build:theme": "sass --load-path=node_modules theme/slides.scss theme/slides.css --no-source-map"
+  },
+  "dependencies": {
+    "reveal.js": "^6.0.1",
+    "reveal.js-copycode": "^1.4.2"
+  },
+  "devDependencies": {
+    "sass": "^1.86.0"
+  },
+  "license": "MIT"
+}

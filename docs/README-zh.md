@@ -2,51 +2,63 @@
 
 ## 介绍
 
-reveal.js 的一个幻灯片主题与模板
+开箱即用的 reveal.js 学术主题
 
 特性:
 
-- **自定义幻灯片主题**: 更适合学术汇报/上课用PPT/学习笔记
-- **可插入页面**: 导出页面经部署可作为 iframe 插入例如 blog
-- 高度**个性化**: 按需编辑模板以及主题样式
-- 集成了**自动化工具**: 自动导出相关格式文件
+- **学术主题**: LaTeX Beamer 风格标题块、自动页脚、KaTeX 公式、图片自适应尺寸、night-owl 代码高亮
+- **简化配置**: 约定了一套内容生产与组织方式、快速产出 dist 部署
 
-## 使用方法
-
-1. 完整安装 reveal.js (需要 Node.js 10.0.0+环境)
+## 快速开始
 
 ```bash
-git clone https://github.com/hakimel/reveal.js.git
-cd reveal.js && npm install
+pnpm install       # install revealjs
+pnpm dev           # http://localhost:4173
 ```
 
-2. 将 `styles` 目录下的 `slides.css` 拖放到 `dist/theme` 目录下
+## 内容组织
 
-3. 编写 markdown 文档头
+```
+markdown/
+├── index.md
+├── os/
+│   ├── index.md
+│   ├── lec1.md
+│   └── lec1.assets/
+└── ...
+```
+
+### Front-matter
 
 ```yml
 ---
-title: 这里编写你的标题
+title: 你的标题        # 必填：标题页 / 页脚 / <title>
+author: 你的名字       # 可选：页脚右侧
 ---
 ```
 
-4. 运行命令
+### 分页
 
-```bash
-./md2slides.py <your_markdown_file>.md
+```markdown
+<!-- slide -->    水平翻页
+<!-- vslide -->   垂直翻页（同级内容下钻）
 ```
 
-5. 在 `output` 目录下就会显示生成的 html 文件和 md 文件
+### 图片
 
-6. 将对应得到的文件放到 `reveal.js` 目录下, 运行命令
+图片放在与 md 文件同名的 `.assets/` 目录（仓库自带的 `.vscode/settings.json` 已配置 VS Code 原生粘贴：在 md 里直接 Ctrl+V 截图或拖入图片，会自动存入该目录并插入相对链接）。无需手动指定尺寸：
 
-```bash
-npm start
+- 一页只有一张独立成段的图片时，自动等比缩放至填满剩余空间（自动居中）
+- 一页多图、图文混排等情况下自动封顶不溢出，默认居中
+- 不希望某页/某图被拉伸时，给对应 `section` 或 `img` 加 `nostretch` class；markdown 里推荐用 div 包裹（div 与内容之间需空行分隔）：
+
+```markdown
+<div class="nostretch">
+
+![描述](xxx.assets/pic.png)
+
+</div>
 ```
-
-就可以看到你的幻灯片了.
-
-如果你愿意, 你可以将导出文件的目录直接指定为 reveal.js, 这样就可以省去复制粘贴的工作了
 
 ## 演示
 
@@ -61,16 +73,3 @@ PPT 标题 & 自动生成脚注
 正文效果
 
 ![正文效果](./images/image-2.png)
-
-TBD
-
-## 配置
-
-你可以在 template 中修改 markdown 分隔符的格式, 默认如下
-
-```html
-<section data-markdown="*.md"
-       data-separator="^<!-- slide -->"
-       data-separator-vertical="^<!-- vslide -->">
-</section>
-```
